@@ -1,0 +1,12 @@
+[package]
+name = "appkitr"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+objr = {path = "../objr"}
+coregraphicsr = {path = "../coregraphicsr"}
+bitflags = "1.3.2"
+foundationr = {path = "../foundationr",features=["nsdictionary"]}
