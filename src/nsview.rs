@@ -2,6 +2,7 @@ use objr::bindings::*;
 use coregraphicsr::*;
 use foundationr::NSInteger;
 use crate::NSWindow;
+use quartzcorer::CALayer;
 
 objc_enum! {
     pub struct NSViewLayerContentsRedrawPolicy<NSInteger>;
@@ -27,6 +28,7 @@ objc_selector_group! {
         @selector("setWantsLayer:")
         @selector("setLayerContentsRedrawPolicy:")
         @selector("window")
+        @selector("layer")
     }
     impl NSViewSelectors for Sel {}
 }
@@ -55,6 +57,12 @@ impl NSView {
         unsafe {
             let ptr = Self::perform_autorelease_to_retain(self.assume_nonmut_perform(), Sel::window(), pool, ());
             NSWindow::nullable(ptr).assume_retained()
+        }
+    }
+    pub fn layer(&self, pool: &ActiveAutoreleasePool) -> Option<StrongCell<CALayer>> {
+        unsafe {
+            let ptr = Self::perform_autorelease_to_retain(self.assume_nonmut_perform(), Sel::layer(), pool, ());
+            CALayer::nullable(ptr).assume_retained()
         }
     }
 }

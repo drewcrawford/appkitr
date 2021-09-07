@@ -10,3 +10,4 @@ objr = {path = "../objr"}
 coregraphicsr = {path = "../coregraphicsr"}
 bitflags = "1.3.2"
 foundationr = {path = "../foundationr",features=["nsdictionary"]}
+quartzcorer = {path = "../quartzcorer"}
