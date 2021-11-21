@@ -1,4 +1,3 @@
-/**
 # Drew's fast Rust AppKit bindings
 
 Provides select Rust bindings for Apple [AppKit](https://developer.apple.com/documentation/appkit) framework.  This may be compared to,
@@ -32,22 +31,3 @@ or new APIs.
 * NSApplication - a few APIs
 * NSScreen - a few APIs
 * NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
-*/
-
-mod nswindow;
-mod nsgraphics;
-mod nsview;
-mod nsapplication;
-mod nsscreen;
-
-pub use nsgraphics::{NSBackingStoreType,NSDeviceDescriptionKey};
-pub use nsview::NSView;
-pub use nswindow::{NSWindow,NSWindowStyleMask,NSWindowOcclusionState};
-pub use nsapplication::NSApplication;
-pub use nsscreen::NSScreen;
-
-
-#[link(name="AppKit",kind="framework")]
-extern {}
-
-

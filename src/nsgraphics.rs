@@ -38,7 +38,7 @@ impl NSDeviceDescriptionKey {
     pub fn NSDeviceSize() -> &'static NSDeviceDescriptionKey { unsafe{ NSDeviceSize.cast() }}
     ///Converts some other key to NSDeviceDescriptionKey.
     ///
-    /// For example, https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription
+    /// For example, `<https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription>`
     ///
     /// # Safety
     /// There is no guarantee this is actually a valid key
