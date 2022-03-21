@@ -31,3 +31,4 @@ or new APIs.
 * NSApplication - a few APIs
 * NSScreen - a few APIs
 * NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
+* NSEvent - keyCode

@@ -39,12 +39,14 @@ mod nsgraphics;
 mod nsview;
 mod nsapplication;
 mod nsscreen;
+mod nsevent;
 
 pub use nsgraphics::{NSBackingStoreType,NSDeviceDescriptionKey};
 pub use nsview::NSView;
 pub use nswindow::{NSWindow,NSWindowStyleMask,NSWindowOcclusionState};
 pub use nsapplication::NSApplication;
 pub use nsscreen::NSScreen;
+pub use nsevent::NSEvent;
 
 
 #[link(name="AppKit",kind="framework")]
