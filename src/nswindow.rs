@@ -54,13 +54,13 @@ impl NSWindow {
     }
     pub fn makeKeyAndOrderFront(&self, sender: &NSObject, pool: &ActiveAutoreleasePool) {
         unsafe {
-            Self::perform_primitive(self.assume_nonmut_perform(), Sel::makeKeyAndOrderFront_(), pool, (sender, ))
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::makeKeyAndOrderFront_(), pool, (sender.assume_nonmut_perform(), ))
         }
     }
     pub fn setContentView(&mut self, contentView: Option<&NSView>, pool: &ActiveAutoreleasePool) {
 
         unsafe {
-            Self::perform_primitive(self, Sel::setContentView_(), pool, (contentView.as_ptr(),))
+            Self::perform_primitive(self, Sel::setContentView_(), pool, (contentView.as_ptr().assume_nonmut_perform(),))
         }
     }
     pub fn screen(&self, pool: &ActiveAutoreleasePool) -> Option<StrongCell<NSScreen>> {
@@ -71,7 +71,7 @@ impl NSWindow {
     }
     pub fn setDelegate(&mut self, delegate: &NSObject, pool: &ActiveAutoreleasePool) {
         unsafe {
-            Self::perform_primitive(self, Sel::setDelegate_(), pool, (delegate,))
+            Self::perform_primitive(self, Sel::setDelegate_(), pool, (delegate.assume_nonmut_perform(),))
         }
     }
     pub fn occlusionState(&self,pool: &ActiveAutoreleasePool) -> NSWindowOcclusionState {
