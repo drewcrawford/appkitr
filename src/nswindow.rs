@@ -26,6 +26,7 @@ objc_selector_group! {
         @selector("screen")
         @selector("setDelegate:")
         @selector("occlusionState")
+        @selector("backingScaleFactor")
     }
     impl NSWindowSelectors for Sel {}
 }
@@ -67,6 +68,11 @@ impl NSWindow {
         unsafe {
             let ptr = Self::perform_autorelease_to_retain(self.assume_nonmut_perform(), Sel::screen(), pool, ());
             NSScreen::nullable(ptr).assume_retained()
+        }
+    }
+    pub fn backingScaleFactor(&self, pool: &ActiveAutoreleasePool) -> CGFloat {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::backingScaleFactor(), pool, ())
         }
     }
     pub fn setDelegate(&mut self, delegate: &NSObject, pool: &ActiveAutoreleasePool) {
