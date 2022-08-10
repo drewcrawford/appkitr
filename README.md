@@ -1,3 +1,5 @@
+![logo](art/logo.png)
+
 # Drew's fast Rust AppKit bindings
 
 Provides select Rust bindings for Apple [AppKit](https://developer.apple.com/documentation/appkit) framework.  This may be compared to,
