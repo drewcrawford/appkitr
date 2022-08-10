@@ -27,6 +27,8 @@ objc_selector_group! {
         @selector("setDelegate:")
         @selector("occlusionState")
         @selector("backingScaleFactor")
+        @selector("acceptsMouseMovedEvents")
+        @selector("setAcceptsMouseMovedEvents:")
     }
     impl NSWindowSelectors for Sel {}
 }
@@ -83,6 +85,16 @@ impl NSWindow {
     pub fn occlusionState(&self,pool: &ActiveAutoreleasePool) -> NSWindowOcclusionState {
         unsafe {
             Self::perform_primitive(self.assume_nonmut_perform(), Sel::occlusionState(), pool, ())
+        }
+    }
+    pub fn acceptsMouseMovedEvents(&self, pool: &ActiveAutoreleasePool) -> bool {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::acceptsMouseMovedEvents(), pool, ())
+        }
+    }
+    pub fn setAcceptsMouseMovedEvents(&mut self, value: bool, pool: &ActiveAutoreleasePool) {
+        unsafe {
+            Self::perform_primitive(self, Sel::setAcceptsMouseMovedEvents_(), pool, (value,))
         }
     }
 }
