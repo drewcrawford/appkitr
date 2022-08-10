@@ -2,7 +2,7 @@ use objr::bindings::*;
 use coregraphicsr::*;
 use bitflags::bitflags;
 use crate::{NSBackingStoreType, NSView, NSScreen};
-use foundationr::NSUInteger;
+use foundationr::{NSUInteger,NSRect};
 bitflags! {
     #[repr(transparent)]
     pub struct NSWindowOcclusionState: NSUInteger {
@@ -29,6 +29,7 @@ objc_selector_group! {
         @selector("backingScaleFactor")
         @selector("acceptsMouseMovedEvents")
         @selector("setAcceptsMouseMovedEvents:")
+        @selector("frame")
     }
     impl NSWindowSelectors for Sel {}
 }
@@ -95,6 +96,11 @@ impl NSWindow {
     pub fn setAcceptsMouseMovedEvents(&mut self, value: bool, pool: &ActiveAutoreleasePool) {
         unsafe {
             Self::perform_primitive(self, Sel::setAcceptsMouseMovedEvents_(), pool, (value,))
+        }
+    }
+    pub fn frame(&self,pool: &ActiveAutoreleasePool) -> NSRect {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::frame(), pool, ())
         }
     }
 }
