@@ -1,6 +1,6 @@
 use objr::bindings::*;
 use coregraphicsr::*;
-use foundationr::NSInteger;
+use foundationr::{NSInteger, NSRect};
 use crate::NSWindow;
 use quartzcorer::CALayer;
 
@@ -29,6 +29,7 @@ objc_selector_group! {
         @selector("setLayerContentsRedrawPolicy:")
         @selector("window")
         @selector("layer")
+        @selector("frame")
     }
     impl NSViewSelectors for Sel {}
 }
@@ -65,6 +66,11 @@ impl NSView {
             CALayer::nullable(ptr).assume_retained()
         }
     }
+    pub fn frame(&self, pool: &ActiveAutoreleasePool) -> NSRect {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::frame(), pool, ())
+        }
+    }
 }
 
 #[test]
@@ -73,6 +79,8 @@ fn smoke_test() {
         let mut v = NSView::initWithFrame(CGRect::make(0.,0.,100.,100.), pool);
         v.setWantsLayer( true, pool);
         v.setLayerContentsRedrawPolicy(NSViewLayerContentsRedrawPolicy::OnSetNeedsDisplay, pool);
+        let f = v.frame(pool);
+        assert_eq!(f.size.width, 100.);
         assert!(v.window(pool).is_none());
     })
 }
