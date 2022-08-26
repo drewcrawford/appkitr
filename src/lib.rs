@@ -54,7 +54,6 @@ pub use nsapplication::NSApplication;
 pub use nsscreen::NSScreen;
 pub use nsevent::NSEvent;
 pub use nsaccessibilityelement::*;
-pub use nsgeometry::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
