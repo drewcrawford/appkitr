@@ -40,6 +40,10 @@ mod nsview;
 mod nsapplication;
 mod nsscreen;
 mod nsevent;
+mod nsaccessibilityelement;
+mod nsaccessibilityconstants;
+
+pub use nsaccessibilityconstants::*;
 
 pub use nsgraphics::{NSBackingStoreType,NSDeviceDescriptionKey};
 pub use nsview::NSView;
