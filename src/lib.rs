@@ -32,6 +32,7 @@ or new APIs.
 * NSApplication - a few APIs
 * NSScreen - a few APIs
 * NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
+* NSAccessibility - common APIs.
 */
 
 mod nswindow;
@@ -53,7 +54,7 @@ pub use nsapplication::NSApplication;
 pub use nsscreen::NSScreen;
 pub use nsevent::NSEvent;
 pub use nsaccessibilityelement::*;
-
+pub use nsgeometry::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
