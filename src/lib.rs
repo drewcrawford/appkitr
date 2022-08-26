@@ -42,6 +42,7 @@ mod nsscreen;
 mod nsevent;
 mod nsaccessibilityelement;
 mod nsaccessibilityconstants;
+mod nsaccessibility;
 
 pub use nsaccessibilityconstants::*;
 
@@ -51,6 +52,7 @@ pub use nswindow::{NSWindow,NSWindowStyleMask,NSWindowOcclusionState};
 pub use nsapplication::NSApplication;
 pub use nsscreen::NSScreen;
 pub use nsevent::NSEvent;
+pub use nsaccessibilityelement::*;
 
 
 #[link(name="AppKit",kind="framework")]

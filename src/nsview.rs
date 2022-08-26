@@ -3,6 +3,7 @@ use coregraphicsr::*;
 use foundationr::{NSInteger, NSRect};
 use crate::NSWindow;
 use quartzcorer::CALayer;
+use crate::NSAccessibilityElement;
 
 objc_enum! {
     pub struct NSViewLayerContentsRedrawPolicy<NSInteger>;
@@ -72,6 +73,10 @@ impl NSView {
         }
     }
 }
+
+objc_cast!(NSView, unsafe NSAccessibilityElement,as_accessibility_element, as_accessibility_element_mut);
+
+
 
 #[test]
 fn smoke_test() {
