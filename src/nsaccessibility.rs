@@ -33,9 +33,9 @@ pub unsafe trait NSAccessibility: PerformablePointer + Sized + Arguable {
             NSObject::nullable(raw).assume_retained()
         }
     }
-    fn setAccessibilityParent(&mut self, pool: &ActiveAutoreleasePool) {
+    fn setAccessibilityParent(&mut self, parent: &NSObject, pool: &ActiveAutoreleasePool) {
         unsafe {
-            Self::perform_primitive(self, Sel::setAccessibilityParent_(), pool, ())
+            Self::perform_primitive(self, Sel::setAccessibilityParent_(), pool, (parent.assume_nonmut_perform(),))
         }
     }
     fn accessibilityFrame(&self, pool: &ActiveAutoreleasePool) -> NSRect {
