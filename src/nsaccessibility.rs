@@ -1,6 +1,6 @@
 use objr::bindings::*;
 use foundationr::{NSArray,NSRect};
-use crate::NSAccessibilityRole;
+use crate::{NSAccessibilityRole,NSAccessibilityNotificationName};
 objc_selector_group! {
     trait Selectors {
         @selector("accessibilityChildren")
@@ -15,7 +15,7 @@ objc_selector_group! {
     impl Selectors for Sel {}
 }
 #[allow(non_snake_case)]
-pub unsafe trait NSAccessibility: PerformablePointer + Sized + Arguable {
+pub unsafe trait NSAccessibility: ObjcInstance + Sized {
     fn accessibilityChildren(&self, pool: &ActiveAutoreleasePool) -> Option<StrongCell<NSArray<NSObject>>> {
         unsafe {
             let raw = Self::perform_autorelease_to_retain(self.assume_nonmut_perform(), Sel::accessibilityChildren(), pool, ());
@@ -68,3 +68,13 @@ objc_instance! {
 }
 
 unsafe impl NSAccessibility for AnyNSAccessibility {}
+
+extern "C" {
+    fn NSAccessibilityPostNotification(element: &NSObject, notification: NSAccessibilityNotificationName);
+}
+
+pub fn post_notification<E: NSAccessibility>(element: &E, notification: NSAccessibilityNotificationName) {
+    unsafe {
+        NSAccessibilityPostNotification(element.as_nsobject(), notification);
+    }
+}

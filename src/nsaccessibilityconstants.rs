@@ -115,3 +115,81 @@ impl NSAccessibilityRole {
     #[inline] pub fn page() -> &'static Self { unsafe { NSAccessibilityPageRole.cast() } }
 
 }
+
+objc_class_newtype!(
+    pub struct NSAccessibilityNotificationName: NSString;
+);
+
+extern "C" {
+    static NSAccessibilityMainWindowChangedNotification: &'static NSString;
+    static NSAccessibilityFocusedWindowChangedNotification: &'static NSString;
+    static NSAccessibilityFocusedUIElementChangedNotification: &'static NSString;
+    static NSAccessibilityApplicationActivatedNotification: &'static NSString;
+    static NSAccessibilityApplicationDeactivatedNotification: &'static NSString;
+    static NSAccessibilityApplicationHiddenNotification: &'static NSString;
+    static NSAccessibilityApplicationShownNotification: &'static NSString;
+    static NSAccessibilityWindowCreatedNotification: &'static NSString;
+    static NSAccessibilityWindowMovedNotification: &'static NSString;
+    static NSAccessibilityWindowResizedNotification: &'static NSString;
+    static NSAccessibilityWindowMiniaturizedNotification: &'static NSString;
+    static NSAccessibilityWindowDeminiaturizedNotification: &'static NSString;
+    static NSAccessibilityDrawerCreatedNotification: &'static NSString;
+    static NSAccessibilitySheetCreatedNotification: &'static NSString;
+    static NSAccessibilityUIElementDestroyedNotification: &'static NSString;
+    static NSAccessibilityValueChangedNotification: &'static NSString;
+    static NSAccessibilityTitleChangedNotification: &'static NSString;
+    static NSAccessibilityResizedNotification: &'static NSString;
+    static NSAccessibilityMovedNotification: &'static NSString;
+    static NSAccessibilityCreatedNotification: &'static NSString;
+    static NSAccessibilityLayoutChangedNotification: &'static NSString;
+    static NSAccessibilityHelpTagCreatedNotification: &'static NSString;
+    static NSAccessibilitySelectedTextChangedNotification: &'static NSString;
+    static NSAccessibilityRowCountChangedNotification: &'static NSString;
+    static NSAccessibilitySelectedChildrenChangedNotification: &'static NSString;
+    static NSAccessibilitySelectedRowsChangedNotification: &'static NSString;
+    static NSAccessibilitySelectedColumnsChangedNotification: &'static NSString;
+    static NSAccessibilityRowExpandedNotification: &'static NSString;
+    static NSAccessibilityRowCollapsedNotification: &'static NSString;
+    static NSAccessibilitySelectedCellsChangedNotification: &'static NSString;
+    static NSAccessibilityUnitsChangedNotification: &'static NSString;
+    static NSAccessibilitySelectedChildrenMovedNotification: &'static NSString;
+    static NSAccessibilityAnnouncementRequestedNotification: &'static NSString;
+}
+
+impl NSAccessibilityNotificationName {
+    #[inline] pub fn main_window_changed() -> &'static Self { unsafe { NSAccessibilityMainWindowChangedNotification.cast() } }
+    #[inline] pub fn focused_window_changed() -> &'static Self { unsafe { NSAccessibilityFocusedWindowChangedNotification.cast() } }
+    #[inline] pub fn focused_ui_element_changed() -> &'static Self { unsafe { NSAccessibilityFocusedUIElementChangedNotification.cast() } }
+    #[inline] pub fn application_activated() -> &'static Self { unsafe { NSAccessibilityApplicationActivatedNotification.cast() } }
+    #[inline] pub fn application_deactivated() -> &'static Self { unsafe { NSAccessibilityApplicationDeactivatedNotification.cast() } }
+    #[inline] pub fn application_hidden() -> &'static Self { unsafe { NSAccessibilityApplicationHiddenNotification.cast() } }
+    #[inline] pub fn application_shown() -> &'static Self { unsafe { NSAccessibilityApplicationShownNotification.cast() } }
+    #[inline] pub fn window_created() -> &'static Self { unsafe { NSAccessibilityWindowCreatedNotification.cast() } }
+    #[inline] pub fn window_moved() -> &'static Self { unsafe { NSAccessibilityWindowMovedNotification.cast() } }
+    #[inline] pub fn window_resized() -> &'static Self { unsafe { NSAccessibilityWindowResizedNotification.cast() } }
+    #[inline] pub fn window_miniaturized() -> &'static Self { unsafe { NSAccessibilityWindowMiniaturizedNotification.cast() } }
+    #[inline] pub fn window_deminiaturized() -> &'static Self { unsafe { NSAccessibilityWindowDeminiaturizedNotification.cast() } }
+    #[inline] pub fn drawer_created() -> &'static Self { unsafe { NSAccessibilityDrawerCreatedNotification.cast() } }
+    #[inline] pub fn sheet_created() -> &'static Self { unsafe { NSAccessibilitySheetCreatedNotification.cast() } }
+    #[inline] pub fn ui_element_destroyed() -> &'static Self { unsafe { NSAccessibilityUIElementDestroyedNotification.cast() } }
+    #[inline] pub fn value_changed() -> &'static Self { unsafe { NSAccessibilityValueChangedNotification.cast() } }
+    #[inline] pub fn title_changed() -> &'static Self { unsafe { NSAccessibilityTitleChangedNotification.cast() } }
+    #[inline] pub fn resized() -> &'static Self { unsafe { NSAccessibilityResizedNotification.cast() } }
+    #[inline] pub fn moved() -> &'static Self { unsafe { NSAccessibilityMovedNotification.cast() } }
+    #[inline] pub fn created() -> &'static Self { unsafe { NSAccessibilityCreatedNotification.cast() } }
+    #[inline] pub fn layout_changed() -> &'static Self { unsafe { NSAccessibilityLayoutChangedNotification.cast() } }
+
+    #[inline] pub fn help_tag_created() -> &'static Self { unsafe { NSAccessibilityHelpTagCreatedNotification.cast() } }
+    #[inline] pub fn selected_text_changed() -> &'static Self { unsafe { NSAccessibilitySelectedTextChangedNotification.cast() } }
+    #[inline] pub fn row_count_changed() -> &'static Self { unsafe { NSAccessibilityRowCountChangedNotification.cast() } }
+    #[inline] pub fn selected_children_changed() -> &'static Self { unsafe { NSAccessibilitySelectedChildrenChangedNotification.cast() } }
+    #[inline] pub fn selected_rows_changed() -> &'static Self { unsafe { NSAccessibilitySelectedRowsChangedNotification.cast() } }
+    #[inline] pub fn selected_columns_changed() -> &'static Self { unsafe { NSAccessibilitySelectedColumnsChangedNotification.cast() } }
+    #[inline] pub fn row_expanded() -> &'static Self { unsafe { NSAccessibilityRowExpandedNotification.cast() } }
+    #[inline] pub fn row_collapsed() -> &'static Self { unsafe { NSAccessibilityRowCollapsedNotification.cast() } }
+    #[inline] pub fn selected_cells_changed() -> &'static Self { unsafe { NSAccessibilitySelectedCellsChangedNotification.cast() } }
+    #[inline] pub fn units_changed() -> &'static Self { unsafe { NSAccessibilityUnitsChangedNotification.cast() } }
+    #[inline] pub fn selected_children_moved() -> &'static Self { unsafe { NSAccessibilitySelectedChildrenMovedNotification.cast() } }
+    #[inline] pub fn announcement_requested() -> &'static Self { unsafe { NSAccessibilityAnnouncementRequestedNotification.cast() } }
+
+}
