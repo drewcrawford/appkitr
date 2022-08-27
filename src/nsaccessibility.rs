@@ -9,6 +9,7 @@ objc_selector_group! {
         @selector("accessibilityFrame")
         @selector("accessibilityRole")
         @selector("setAccessibilityRole:")
+        @selector("setAccessibilityFrame:")
     }
     impl Selectors for Sel {}
 }
@@ -47,6 +48,10 @@ pub unsafe trait NSAccessibility: PerformablePointer + Sized + Arguable {
             Self::perform_primitive(self, Sel::setAccessibilityRole_(), pool, (role.assume_nonmut_perform(),))
         }
     }
+    unsafe fn setAccessibilityFrame(&mut self, frame: NSRect, pool: &ActiveAutoreleasePool) {
+        Self::perform_primitive(self, Sel::setAccessibilityFrame_(), pool, (frame,))
+    }
+
 }
 
 objc_instance! {
