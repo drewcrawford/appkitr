@@ -1,11 +1,14 @@
 use objr::bindings::*;
 use foundationr::{NSArray,NSRect};
+use crate::NSAccessibilityRole;
 objc_selector_group! {
     trait Selectors {
         @selector("accessibilityChildren")
         @selector("setAccessibilityChildren:")
         @selector("accessibilityParent")
         @selector("accessibilityFrame")
+        @selector("accessibilityRole")
+        @selector("setAccessibilityRole:")
     }
     impl Selectors for Sel {}
 }
@@ -31,6 +34,17 @@ pub unsafe trait NSAccessibility: PerformablePointer + Sized + Arguable {
     fn accessibilityFrame(&self, pool: &ActiveAutoreleasePool) -> NSRect {
         unsafe {
             Self::perform_primitive(self.assume_nonmut_perform(), Sel::accessibilityFrame(), pool, ())
+        }
+    }
+    fn accessibilityRole(&self, pool: &ActiveAutoreleasePool) -> Option<StrongCell<NSAccessibilityRole>> {
+        unsafe {
+            let raw = Self::perform_autorelease_to_retain(self.assume_nonmut_perform(), Sel::accessibilityRole(), pool, ());
+            NSAccessibilityRole::nullable(raw).assume_retained()
+        }
+    }
+    fn setAccessibilityRole(&mut self, role: Option<&NSAccessibilityRole>, pool: &ActiveAutoreleasePool) {
+        unsafe {
+            Self::perform_primitive(self, Sel::setAccessibilityRole_(), pool, (role.assume_nonmut_perform(),))
         }
     }
 }
