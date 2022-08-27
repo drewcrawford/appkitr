@@ -70,10 +70,10 @@ objc_instance! {
 unsafe impl NSAccessibility for AnyNSAccessibility {}
 
 extern "C" {
-    fn NSAccessibilityPostNotification(element: &NSObject, notification: NSAccessibilityNotificationName);
+    fn NSAccessibilityPostNotification(element: &NSObject, notification: &NSAccessibilityNotificationName);
 }
 
-pub fn post_notification<E: NSAccessibility>(element: &E, notification: NSAccessibilityNotificationName) {
+pub fn post_notification<E: NSAccessibility>(element: &E, notification: &NSAccessibilityNotificationName) {
     unsafe {
         NSAccessibilityPostNotification(element.as_nsobject(), notification);
     }
