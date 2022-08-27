@@ -33,5 +33,13 @@ pub unsafe trait NSAccessibility: PerformablePointer + Sized + Arguable {
             Self::perform_primitive(self.assume_nonmut_perform(), Sel::accessibilityFrame(), pool, ())
         }
     }
-
 }
+
+objc_instance! {
+    /**
+    An erased type that can be used to represent any NSAccessibility object.
+    */
+    pub struct AnyNSAccessibility;
+}
+
+unsafe impl NSAccessibility for AnyNSAccessibility {}
