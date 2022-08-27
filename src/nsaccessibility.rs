@@ -6,6 +6,7 @@ objc_selector_group! {
         @selector("accessibilityChildren")
         @selector("setAccessibilityChildren:")
         @selector("accessibilityParent")
+        @selector("setAccessibilityParent:")
         @selector("accessibilityFrame")
         @selector("accessibilityRole")
         @selector("setAccessibilityRole:")
@@ -30,6 +31,11 @@ pub unsafe trait NSAccessibility: PerformablePointer + Sized + Arguable {
         unsafe {
             let raw = Self::perform_autorelease_to_retain(self.assume_nonmut_perform(), Sel::accessibilityParent(), pool, ());
             NSObject::nullable(raw).assume_retained()
+        }
+    }
+    fn setAccessibilityParent(&mut self, pool: &ActiveAutoreleasePool) {
+        unsafe {
+            Self::perform_primitive(self, Sel::setAccessibilityParent_(), pool, ())
         }
     }
     fn accessibilityFrame(&self, pool: &ActiveAutoreleasePool) -> NSRect {
