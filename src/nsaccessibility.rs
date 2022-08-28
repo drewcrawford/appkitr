@@ -73,8 +73,8 @@ extern "C" {
     fn NSAccessibilityPostNotification(element: *const NSObject, notification: *const NSAccessibilityNotificationName);
 }
 
-pub fn post_notification<E: NSAccessibility>(element: &E, notification: &NSAccessibilityNotificationName) {
+pub fn post_notification(element: &NSObject, notification: &NSAccessibilityNotificationName) {
     unsafe {
-        NSAccessibilityPostNotification(element.as_nsobject(), notification);
+        NSAccessibilityPostNotification(element, notification);
     }
 }
