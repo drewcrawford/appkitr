@@ -36,3 +36,4 @@ or new APIs.
 * NSEvent - keyCode
 * NSAccessibility - common APIs.
 * NSFont,NSFontDescriptor - a few APIs.
+* NSStringDrawing

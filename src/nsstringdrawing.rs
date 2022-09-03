@@ -1,5 +1,15 @@
 use coregraphicsr::CGFloat;
 use objr::bindings::*;
+use foundationr::NSInteger;
+objc_enum! {
+    pub struct NSStringDrawingOptions<NSInteger>;
+    impl NSStringDrawingOptions {
+        UsesLineFragmentOrigin = 1 << 0,
+        UsesFontLeading = 1 << 1,
+        UsesDeviceMetrics = 1 << 3,
+        TruncatesLastVisibleLine  = 1 << 5
+    }
+}
 objc_class! {
     pub struct NSStringDrawingContext {
         @class(NSStringDrawingContext)
