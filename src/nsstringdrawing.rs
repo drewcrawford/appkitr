@@ -40,8 +40,8 @@ impl NSStringDrawingContext {
             Self::perform_primitive(self, Sel::setMinimumScaleFactor_(),pool, (minimumScaleFactor,))
         }
     }
-
 }
+
 
 #[test] fn smoke() {
     autoreleasepool(|pool| {
