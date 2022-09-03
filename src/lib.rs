@@ -1,4 +1,5 @@
-/**
+/*!
+![logo](../../../art/logo.png)
 # Drew's fast Rust AppKit bindings
 
 Provides select Rust bindings for Apple [AppKit](https://developer.apple.com/documentation/appkit) framework.  This may be compared to,
@@ -33,6 +34,7 @@ or new APIs.
 * NSScreen - a few APIs
 * NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
 * NSAccessibility - common APIs.
+* NSFontDescriptor - a few APIs.
 */
 
 mod nswindow;
@@ -44,6 +46,7 @@ mod nsevent;
 mod nsaccessibilityelement;
 mod nsaccessibilityconstants;
 mod nsaccessibility;
+mod nsfontdescriptor;
 
 pub use nsaccessibilityconstants::*;
 
@@ -55,6 +58,7 @@ pub use nsscreen::NSScreen;
 pub use nsevent::NSEvent;
 pub use nsaccessibilityelement::*;
 pub use nsaccessibility::*;
+pub use nsfontdescriptor::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
