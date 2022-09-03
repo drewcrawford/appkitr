@@ -1,6 +1,9 @@
-use coregraphicsr::CGFloat;
+use std::ops::BitOr;
+use coregraphicsr::{CGFloat, CGRect, CGSize};
 use objr::bindings::*;
 use foundationr::NSInteger;
+use foundationr::NSAttributedString;
+
 objc_enum! {
     pub struct NSStringDrawingOptions<NSInteger>;
     impl NSStringDrawingOptions {
@@ -8,6 +11,13 @@ objc_enum! {
         UsesFontLeading = 1 << 1,
         UsesDeviceMetrics = 1 << 3,
         TruncatesLastVisibleLine  = 1 << 5
+    }
+}
+impl BitOr for NSStringDrawingOptions {
+    type Output = Self;
+
+    fn bitor(self, rhs: Self) -> Self::Output {
+        Self(self.0 | rhs.0)
     }
 }
 objc_class! {
@@ -19,6 +29,7 @@ objc_selector_group! {
     trait Selectors {
         @selector("minimumScaleFactor")
         @selector("setMinimumScaleFactor:")
+        @selector("boundingRectWithSize:options:context:")
     }
     impl Selectors for Sel {}
 }
@@ -42,6 +53,17 @@ impl NSStringDrawingContext {
     }
 }
 
+#[allow(non_snake_case)]
+pub trait NSAttributedStringDrawing: Sized + PerformablePointer + Arguable {
+    fn boundingRectWithSizeOptionsAttributesContext(&self, size: CGSize, options: NSStringDrawingOptions, context: &mut NSStringDrawingContext, pool: &ActiveAutoreleasePool) -> CGRect {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::boundingRectWithSize_options_context(), pool, (size, options.field(), context))
+        }
+    }
+}
+impl NSAttributedStringDrawing for NSAttributedString {
+
+}
 
 #[test] fn smoke() {
     autoreleasepool(|pool| {
@@ -49,5 +71,9 @@ impl NSStringDrawingContext {
         context.setMinimumScaleFactor(0.5,pool);
         assert_eq!(context.minimumScaleFactor(pool), 0.5);
         println!("{}", context);
+
+        let s = NSAttributedString::withStringAttributes(objc_nsstring!("Hello world"), None, pool);
+        let r = s.boundingRectWithSizeOptionsAttributesContext(CGSize{width: 100.0,height: 100.0}, NSStringDrawingOptions::UsesLineFragmentOrigin | NSStringDrawingOptions::TruncatesLastVisibleLine, &mut context, pool);
+        println!("{:?}", r);
     })
 }
