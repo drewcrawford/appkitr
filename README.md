@@ -35,4 +35,4 @@ or new APIs.
 * NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
 * NSEvent - keyCode
 * NSAccessibility - common APIs.
-* NSFontDescriptor - a few APIs.
+* NSFont,NSFontDescriptor - a few APIs.

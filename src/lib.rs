@@ -34,7 +34,7 @@ or new APIs.
 * NSScreen - a few APIs
 * NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
 * NSAccessibility - common APIs.
-* NSFontDescriptor - a few APIs.
+* NSFont,NSFontDescriptor - a few APIs.
 */
 
 mod nswindow;
@@ -47,6 +47,8 @@ mod nsaccessibilityelement;
 mod nsaccessibilityconstants;
 mod nsaccessibility;
 mod nsfontdescriptor;
+mod nsfont;
+mod nsstringdrawing;
 
 pub use nsaccessibilityconstants::*;
 
@@ -59,6 +61,7 @@ pub use nsevent::NSEvent;
 pub use nsaccessibilityelement::*;
 pub use nsaccessibility::*;
 pub use nsfontdescriptor::*;
+pub use nsfont::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
