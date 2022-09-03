@@ -62,6 +62,7 @@ pub use nsaccessibilityelement::*;
 pub use nsaccessibility::*;
 pub use nsfontdescriptor::*;
 pub use nsfont::*;
+pub use nsstringdrawing::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
