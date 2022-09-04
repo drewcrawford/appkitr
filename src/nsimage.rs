@@ -1,6 +1,6 @@
-use coregraphicsr::{CGSize,CGImage};
+use coregraphicsr::{CGSize, CGImage};
 use objr::bindings::*;
-use foundationr::NSData;
+use foundationr::{NSData};
 objc_class! {
     pub struct NSImage {
         @class(NSImage)
@@ -12,6 +12,7 @@ objc_selector_group! {
         @selector("lockFocus")
         @selector("unlockFocus")
         @selector("TIFFRepresentation")
+        @selector("CGImageForProposedRect:context:hints:")
     }
     impl Selectors for Sel {}
 }
@@ -40,6 +41,19 @@ impl NSImage {
             NSData::nullable(raw).assume_retained()
         }
     }
+    #[cfg(feature="corefoundationr")]
+    pub fn CGImageForProposedRectContextHints(&mut self, rect: Option<&foundationr::NSRect>, context: Option<&crate::NSGraphicsContext>, hints: Option<&foundationr::NSDictionary<crate::NSImageHintKey,NSObject>>, pool: &ActiveAutoreleasePool) -> Option<core_foundationr::StrongCell<CGImage>> {
+        unsafe {
+            let raw: *const std::os::raw::c_void = Self::perform_primitive(self, Sel::CGImageForProposedRect_context_hints(), pool, (rect.assume_nonmut_perform(), context.assume_nonmut_perform(), hints.assume_nonmut_perform()));
+
+            if raw.is_null() {
+                None
+            }
+            else {
+                Some(core_foundationr::StrongCell::retain_assuming_nonnull(raw as *const CGImage))
+            }
+        }
+    }
 }
 
 #[cfg(test)] mod tests {
@@ -56,6 +70,11 @@ impl NSImage {
             image.lockFocus(pool);
             image.unlockFocus(pool);
             let _ = image.TIFFRepresentation(pool).unwrap();
+
+            #[cfg(feature="corefoundationr")]
+            {
+                let _ = image.CGImageForProposedRectContextHints(None,None,None,pool).unwrap();
+            }
         });
     }
 }

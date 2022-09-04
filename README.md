@@ -32,7 +32,7 @@ or new APIs.
 * NSWindow and related types - several common APIs.
 * NSApplication - a few APIs
 * NSScreen - a few APIs
-* NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
+* NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey, NSGraphicsContext - few APIs
 * NSEvent - keyCode
 * NSAccessibility - common APIs.
 * NSFont,NSFontDescriptor - a few APIs.

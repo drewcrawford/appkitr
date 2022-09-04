@@ -32,7 +32,7 @@ or new APIs.
 * NSWindow and related types - several common APIs.
 * NSApplication - a few APIs
 * NSScreen - a few APIs
-* NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey - few APIs
+* NSGraphics, NSBackingStoreType, NSDeviceDescriptionKey, NSGraphicsContext - few APIs
 * NSAccessibility - common APIs.
 * NSFont,NSFontDescriptor - a few APIs.
 * NSStringDrawing
@@ -53,6 +53,8 @@ mod nsfont;
 mod nsstringdrawing;
 mod nsattributedstring;
 mod nsimage;
+mod nsgraphicscontext;
+mod nsimagerep;
 
 pub use nsaccessibilityconstants::*;
 
@@ -69,6 +71,8 @@ pub use nsfont::*;
 pub use nsstringdrawing::*;
 pub use nsattributedstring::*;
 pub use nsimage::*;
+pub use nsgraphicscontext::*;
+pub use nsimagerep::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
