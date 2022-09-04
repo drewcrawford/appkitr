@@ -51,6 +51,7 @@ mod nsfontdescriptor;
 mod nsfont;
 mod nsstringdrawing;
 mod nsattributedstring;
+mod nsimage;
 
 pub use nsaccessibilityconstants::*;
 
@@ -66,6 +67,7 @@ pub use nsfontdescriptor::*;
 pub use nsfont::*;
 pub use nsstringdrawing::*;
 pub use nsattributedstring::*;
+pub use nsimage::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
