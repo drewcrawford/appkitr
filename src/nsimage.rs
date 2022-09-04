@@ -20,10 +20,10 @@ objc_selector_group! {
 
 #[allow(non_snake_case)]
 impl NSImage {
-    pub fn initWithSize(size: CGSize, pool: &ActiveAutoreleasePool) -> StrongCell<Self> {
+    pub fn initWithSize(size: CGSize, pool: &ActiveAutoreleasePool) -> StrongMutCell<Self> {
         unsafe {
             let alloc = Self::class().alloc(pool);
-            Self::assume_nonnil(Self::perform(alloc, Sel::initWithSize_(), pool, (size,))).assume_retained()
+            Self::assume_nonnil(Self::perform(alloc, Sel::initWithSize_(), pool, (size,))).assume_retained().assume_mut()
         }
     }
     pub fn initWithCGImageSize(image: &mut CGImage, size: CGSize, pool: &ActiveAutoreleasePool) -> StrongMutCell<Self> {
