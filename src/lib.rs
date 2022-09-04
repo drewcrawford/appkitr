@@ -36,6 +36,7 @@ or new APIs.
 * NSAccessibility - common APIs.
 * NSFont,NSFontDescriptor - a few APIs.
 * NSStringDrawing
+* NSImage - a few APIs
 */
 
 mod nswindow;
