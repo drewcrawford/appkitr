@@ -1,5 +1,6 @@
 use coregraphicsr::{CGSize,CGImage};
 use objr::bindings::*;
+use foundationr::NSData;
 objc_class! {
     pub struct NSImage {
         @class(NSImage)
@@ -10,6 +11,7 @@ objc_selector_group! {
         @selector("initWithCGImage:size:")
         @selector("lockFocus")
         @selector("unlockFocus")
+        @selector("TIFFRepresentation")
     }
     impl Selectors for Sel {}
 }
@@ -32,6 +34,12 @@ impl NSImage {
             Self::perform_primitive(self, Sel::unlockFocus(), pool, ())
         }
     }
+    pub fn TIFFRepresentation(&mut self, pool: &ActiveAutoreleasePool) -> Option<StrongCell<NSData>> {
+        unsafe {
+            let raw: *const NSData = Self::perform_autorelease_to_retain(self, Sel::TIFFRepresentation(), pool, ());
+            NSData::nullable(raw).assume_retained()
+        }
+    }
 }
 
 #[cfg(test)] mod tests {
@@ -47,6 +55,7 @@ impl NSImage {
             let mut image = NSImage::initWithCGImageSize(&mut image, CGSize{width: 1.0, height: 1.0}, pool);
             image.lockFocus(pool);
             image.unlockFocus(pool);
+            let _ = image.TIFFRepresentation(pool).unwrap();
         });
     }
 }
