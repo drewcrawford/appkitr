@@ -26,7 +26,7 @@ impl NSFontDescriptor {
             let as_ptr: *const CTFontDescriptor = as_ref as *const CTFontDescriptor;
             let pun = as_ptr as *const NSFontDescriptor;
             core::mem::forget(ctfontdescriptor);
-            Self::assume_nonnil(pun).assuming_retained_nonnull()
+            Self::assume_nonnil(pun).assume_retained()
         }
     }
     ///`+ (NSFontDescriptor *)fontDescriptorWithName:(NSString *)fontName size:(CGFloat)size;`
