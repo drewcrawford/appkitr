@@ -56,7 +56,7 @@ impl NSStringDrawingContext {
 
 #[allow(non_snake_case)]
 pub trait NSAttributedStringDrawing: Sized + PerformablePointer + Arguable {
-    fn boundingRectWithSizeOptionsAttributesContext(&self, size: CGSize, options: NSStringDrawingOptions, context: &mut NSStringDrawingContext, pool: &ActiveAutoreleasePool) -> CGRect {
+    fn boundingRectWithSizeOptionsContext(&self, size: CGSize, options: NSStringDrawingOptions, context: &mut NSStringDrawingContext, pool: &ActiveAutoreleasePool) -> CGRect {
         unsafe {
             Self::perform_primitive(self.assume_nonmut_perform(), Sel::boundingRectWithSize_options_context(), pool, (size, options.field(), context))
         }
@@ -79,7 +79,7 @@ impl NSAttributedStringDrawing for NSAttributedString {
         println!("{}", context);
 
         let s = NSAttributedString::withStringAttributes(objc_nsstring!("Hello world"), None, pool);
-        let r = s.boundingRectWithSizeOptionsAttributesContext(CGSize{width: 100.0,height: 100.0}, NSStringDrawingOptions::UsesLineFragmentOrigin | NSStringDrawingOptions::TruncatesLastVisibleLine, &mut context, pool);
+        let r = s.boundingRectWithSizeOptionsContext(CGSize{width: 100.0,height: 100.0}, NSStringDrawingOptions::UsesLineFragmentOrigin | NSStringDrawingOptions::TruncatesLastVisibleLine, &mut context, pool);
         s.drawWithRectOptionsContext(r, NSStringDrawingOptions::UsesLineFragmentOrigin | NSStringDrawingOptions::TruncatesLastVisibleLine, &mut context, pool);
         println!("{:?}", r);
     })
