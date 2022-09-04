@@ -30,6 +30,7 @@ objc_selector_group! {
         @selector("minimumScaleFactor")
         @selector("setMinimumScaleFactor:")
         @selector("boundingRectWithSize:options:context:")
+        @selector("drawWithRect:options:context:")
     }
     impl Selectors for Sel {}
 }
@@ -60,6 +61,11 @@ pub trait NSAttributedStringDrawing: Sized + PerformablePointer + Arguable {
             Self::perform_primitive(self.assume_nonmut_perform(), Sel::boundingRectWithSize_options_context(), pool, (size, options.field(), context))
         }
     }
+    fn drawWithRectOptionsContext(&self, rect: CGRect, options: NSStringDrawingOptions, context: &mut NSStringDrawingContext, pool: &ActiveAutoreleasePool) {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::drawWithRect_options_context(), pool, (rect, options.field(), context))
+        }
+    }
 }
 impl NSAttributedStringDrawing for NSAttributedString {
 
@@ -74,6 +80,7 @@ impl NSAttributedStringDrawing for NSAttributedString {
 
         let s = NSAttributedString::withStringAttributes(objc_nsstring!("Hello world"), None, pool);
         let r = s.boundingRectWithSizeOptionsAttributesContext(CGSize{width: 100.0,height: 100.0}, NSStringDrawingOptions::UsesLineFragmentOrigin | NSStringDrawingOptions::TruncatesLastVisibleLine, &mut context, pool);
+        s.drawWithRectOptionsContext(r, NSStringDrawingOptions::UsesLineFragmentOrigin | NSStringDrawingOptions::TruncatesLastVisibleLine, &mut context, pool);
         println!("{:?}", r);
     })
 }
