@@ -13,12 +13,19 @@ objc_selector_group! {
         @selector("unlockFocus")
         @selector("TIFFRepresentation")
         @selector("CGImageForProposedRect:context:hints:")
+        @selector("initWithSize:")
     }
     impl Selectors for Sel {}
 }
 
 #[allow(non_snake_case)]
 impl NSImage {
+    pub fn initWithSize(size: CGSize, pool: &ActiveAutoreleasePool) -> StrongCell<Self> {
+        unsafe {
+            let alloc = Self::class().alloc(pool);
+            Self::assume_nonnil(Self::perform(alloc, Sel::initWithSize_(), pool, (size,))).assume_retained()
+        }
+    }
     pub fn initWithCGImageSize(image: &mut CGImage, size: CGSize, pool: &ActiveAutoreleasePool) -> StrongMutCell<Self> {
         unsafe {
             let alloc = Self::class().alloc(pool);
@@ -75,6 +82,12 @@ impl NSImage {
             {
                 let _ = image.CGImageForProposedRectContextHints(None,None,None,pool).unwrap();
             }
+
         });
+    }
+    #[test] fn desginated_init() {
+        autoreleasepool( |pool| {
+            let _ = NSImage::initWithSize(CGSize{width: 1.0, height: 1.0}, pool);
+        })
     }
 }
