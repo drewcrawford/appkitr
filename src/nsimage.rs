@@ -48,7 +48,6 @@ impl NSImage {
             NSData::nullable(raw).assume_retained()
         }
     }
-    #[cfg(feature="corefoundationr")]
     pub fn CGImageForProposedRectContextHints(&mut self, rect: Option<&foundationr::NSRect>, context: Option<&crate::NSGraphicsContext>, hints: Option<&foundationr::NSDictionary<crate::NSImageHintKey,NSObject>>, pool: &ActiveAutoreleasePool) -> Option<core_foundationr::StrongCell<CGImage>> {
         unsafe {
             let raw: *const std::os::raw::c_void = Self::perform_primitive(self, Sel::CGImageForProposedRect_context_hints(), pool, (rect.assume_nonmut_perform(), context.assume_nonmut_perform(), hints.assume_nonmut_perform()));
@@ -78,10 +77,8 @@ impl NSImage {
             image.unlockFocus(pool);
             let _ = image.TIFFRepresentation(pool).unwrap();
 
-            #[cfg(feature="corefoundationr")]
-            {
-                let _ = image.CGImageForProposedRectContextHints(None,None,None,pool).unwrap();
-            }
+            let _ = image.CGImageForProposedRectContextHints(None,None,None,pool).unwrap();
+
 
         });
     }
