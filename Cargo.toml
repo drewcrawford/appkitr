@@ -14,5 +14,8 @@ quartzcorer = {git = "https://github.com/drewcrawford/quartzcorer"}
 coretextr = {git = "https://github.com/drewcrawford/coretextr",optional=true}
 core-foundationr = {git = "https://github.com/drewcrawford/core-foundationr"}
 
+[dev-dependencies]
+foundationr = {git = "https://github.com/drewcrawford/foundationr",features=["nsvalue"]}
+
 [features]
 coretext = ["coretextr"]
