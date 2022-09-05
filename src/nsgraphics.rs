@@ -46,3 +46,34 @@ impl NSDeviceDescriptionKey {
         key.cast()
     }
 }
+
+objc_class_newtype! {
+    pub struct NSColorSpaceName: NSString;
+}
+extern "C" {
+    static NSCalibratedWhiteColorSpace: &'static NSColorSpaceName;
+    static NSCalibratedRGBColorSpace: &'static NSColorSpaceName;
+    static NSDeviceWhiteColorSpace: &'static NSColorSpaceName;
+    static NSDeviceRGBColorSpace: &'static NSColorSpaceName;
+    static NSDeviceCMYKColorSpace: &'static NSColorSpaceName;
+    static NSNamedColorSpace: &'static NSColorSpaceName;
+    static NSPatternColorSpace: &'static NSColorSpaceName;
+    static NSCustomColorSpace: &'static NSColorSpaceName;
+    static NSCalibratedBlackColorSpace: &'static NSColorSpaceName;
+    static NSDeviceBlackColorSpace: &'static NSColorSpaceName;
+}
+
+#[allow(non_snake_case)]
+impl NSColorSpaceName {
+    pub fn calibrated_white() -> &'static NSColorSpaceName { unsafe{ NSCalibratedWhiteColorSpace.cast() }}
+    pub fn calibrated_rgb() -> &'static NSColorSpaceName { unsafe{ NSCalibratedRGBColorSpace.cast() }}
+    pub fn device_white() -> &'static NSColorSpaceName { unsafe{ NSDeviceWhiteColorSpace.cast() }}
+    pub fn device_rgb() -> &'static NSColorSpaceName { unsafe{ NSDeviceRGBColorSpace.cast() }}
+    pub fn device_cmyk() -> &'static NSColorSpaceName { unsafe{ NSDeviceCMYKColorSpace.cast() }}
+    pub fn named() -> &'static NSColorSpaceName { unsafe{ NSNamedColorSpace.cast() }}
+    pub fn pattern() -> &'static NSColorSpaceName { unsafe{ NSPatternColorSpace.cast() }}
+    pub fn custom() -> &'static NSColorSpaceName { unsafe{ NSCustomColorSpace.cast() }}
+    pub fn calibrated_black() -> &'static NSColorSpaceName { unsafe{ NSCalibratedBlackColorSpace.cast() }}
+    pub fn device_black() -> &'static NSColorSpaceName { unsafe{ NSDeviceBlackColorSpace.cast() }}
+
+}

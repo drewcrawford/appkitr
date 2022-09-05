@@ -38,3 +38,4 @@ or new APIs.
 * NSFont,NSFontDescriptor - a few APIs.
 * NSStringDrawing
 * NSImage - a few APIs
+* NSBitmapImageRep
