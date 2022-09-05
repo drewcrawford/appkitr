@@ -38,6 +38,20 @@ impl NSFontDescriptorAttributeName {
     #[inline] pub fn feature_settings() -> &'static Self { unsafe { &NSFontFeatureSettingsAttribute } }
 }
 
+objc_class_newtype! {
+    pub struct NSFontDescriptorFeatureKey: NSString;
+}
+impl NSCopying for NSFontDescriptorFeatureKey {}
+extern "C" {
+    static NSFontFeatureTypeIdentifierKey: &'static NSFontDescriptorFeatureKey;
+    static NSFontFeatureSelectorIdentifierKey: &'static NSFontDescriptorFeatureKey;
+}
+impl NSFontDescriptorFeatureKey {
+    #[inline] pub fn type_identifier() -> &'static Self { unsafe { &NSFontFeatureTypeIdentifierKey } }
+    #[inline] pub fn selector_identifier() -> &'static Self { unsafe { &NSFontFeatureSelectorIdentifierKey } }
+}
+
+
 #[cfg(feature="bridge")]
 use core_foundationr::CTFontDescriptor;
 objc_class! {
