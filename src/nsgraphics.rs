@@ -75,5 +75,17 @@ impl NSColorSpaceName {
     pub fn custom() -> &'static NSColorSpaceName { unsafe{ NSCustomColorSpace.cast() }}
     pub fn calibrated_black() -> &'static NSColorSpaceName { unsafe{ NSCalibratedBlackColorSpace.cast() }}
     pub fn device_black() -> &'static NSColorSpaceName { unsafe{ NSDeviceBlackColorSpace.cast() }}
+}
 
+objc_enum! {
+    pub struct NSBitmapFormat<NSUInteger>;
+    impl NSBitmapFormat {
+        AlphaFirst = 1 << 0,
+        AlphaNonpremultiplied = 1 << 1,
+        FloatingPointSamples = 1 << 2,
+        SixteenBitLittleEndian = 1 << 8,
+        ThirtyTwoBitLittleEndian = 1 << 9,
+        SixteenBitBigEndian = 1 << 10,
+        ThirtyTwoBitBigEndian = 1 << 11
+    }
 }
