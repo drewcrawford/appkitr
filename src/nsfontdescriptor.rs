@@ -63,6 +63,7 @@ objc_selector_group! {
     trait Selectors {
         @selector("fontDescriptorWithName:size:")
         @selector("initWithFontAttributes:")
+        @selector("fontDescriptorByAddingAttributes:")
     }
     impl Selectors for Sel {}
 }
@@ -93,6 +94,12 @@ impl NSFontDescriptor {
             Self::assume_nonnil(raw).assume_retained()
         }
     }
+    pub fn byAddingAttributes(&self, attributes: &NSDictionary<NSFontDescriptorAttributeName,NSObject>, pool: &ActiveAutoreleasePool) -> StrongCell<Self> {
+        unsafe {
+            let raw: *const Self = Self::perform_autorelease_to_retain(self.assume_nonmut_perform(), Sel::fontDescriptorByAddingAttributes_(), pool,(attributes.assume_nonmut_perform(),));
+            Self::assume_nonnil(raw).assume_retained()
+        }
+    }
 }
 
 #[cfg(test)] mod tests {
@@ -117,6 +124,8 @@ impl NSFontDescriptor {
             let attributes = NSDictionary::withObjectsForKeys(&[helvetica.as_nsobject(),size.as_nsobject()], &[NSFontDescriptorAttributeName::name(), NSFontDescriptorAttributeName::size()],pool);
             let font = NSFontDescriptor::withFontAttributes(&attributes, pool);
             println!("{}", font);
+            let font2 = font.byAddingAttributes(&attributes, pool);
+            println!("{}", font2);
         })
     }
 }
