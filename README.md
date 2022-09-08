@@ -39,3 +39,4 @@ or new APIs.
 * NSStringDrawing
 * NSImage - a few APIs
 * NSBitmapImageRep
+* NSColor

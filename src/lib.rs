@@ -38,6 +38,7 @@ or new APIs.
 * NSStringDrawing
 * NSImage - a few APIs
 * NSBitmapImageRep
+* NSColor
 */
 
 mod nswindow;
@@ -57,6 +58,7 @@ mod nsimage;
 mod nsgraphicscontext;
 mod nsimagerep;
 mod nsbitmapimagerep;
+mod nscolor;
 
 pub use nsaccessibilityconstants::*;
 
@@ -76,6 +78,7 @@ pub use nsimage::*;
 pub use nsgraphicscontext::*;
 pub use nsimagerep::*;
 pub use nsbitmapimagerep::*;
+pub use nscolor::*;
 
 #[link(name="AppKit",kind="framework")]
 extern {}
