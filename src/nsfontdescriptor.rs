@@ -67,6 +67,8 @@ objc_selector_group! {
     }
     impl Selectors for Sel {}
 }
+unsafe impl Send for NSFontDescriptor {}
+unsafe impl Sync for NSFontDescriptor {}
 
 #[allow(non_snake_case)]
 impl NSFontDescriptor {
