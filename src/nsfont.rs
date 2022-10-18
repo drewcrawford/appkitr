@@ -10,6 +10,9 @@ objc_class! {
 objc_selector_group! {
     trait Selectors {
         @selector("fontWithDescriptor:size:")
+        @selector("ascender")
+        @selector("descender")
+        @selector("leading")
     }
     impl Selectors for Sel {}
 }
@@ -21,6 +24,22 @@ impl NSFont {
             Self::assume_nonnil(raw).assume_retained()
         }
     }
+    pub fn ascender(&self, pool: &ActiveAutoreleasePool) -> CGFloat {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::ascender(), pool, ())
+        }
+    }
+    pub fn descender(&self, pool: &ActiveAutoreleasePool) -> CGFloat {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::descender(), pool, ())
+        }
+    }
+    pub fn leading(&self, pool: &ActiveAutoreleasePool) -> CGFloat {
+        unsafe {
+            Self::perform_primitive(self.assume_nonmut_perform(), Sel::leading(), pool, ())
+        }
+    }
+
 }
 
 #[test] fn smoke() {
@@ -29,5 +48,8 @@ impl NSFont {
         let font = NSFontDescriptor::withNameSize(&nsstring, 12.0, pool);
         let font = NSFont::withDescriptorSize(&font, 12.0, pool);
         println!("{}", font);
+        println!("ascender {}", font.ascender(pool));
+        println!("descender {}", font.descender(pool));
+        println!("leading {}", font.leading(pool));
     })
 }
